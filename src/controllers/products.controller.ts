@@ -1,11 +1,21 @@
-import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Param,
+  Post,
+  Body,
+  Put,
+  Delete,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { Response } from 'express';
+import { ParseIntPipe } from 'src/common/parse-int/parse-int.pipe';
 import { ProductsService } from 'src/services/products.service';
-
 
 @Controller('products')
 export class ProductsController {
-
   constructor(private productsService: ProductsService) {}
 
   @Get()
@@ -19,9 +29,7 @@ export class ProductsController {
   }
 
   @Get('filter')
-  getProductFilter() {
-
-  }
+  getProductFilter() {}
 
   @Get(':productId')
   @HttpCode(HttpStatus.ACCEPTED)
@@ -36,7 +44,7 @@ export class ProductsController {
   }
 
   @Post()
-  create(@Body() payload: any){
+  create(@Body() payload: any) {
     // return {
     //   message: 'accion de crear',
     //   payload
