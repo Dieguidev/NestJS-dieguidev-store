@@ -27,4 +27,25 @@ export class ProductsService {
     this.products.push(product);
     return product;
   }
+
+  updateProduct(id: number,payload: any) {
+    const product = this.getProduct(id);
+    console.log(product);
+
+    if (product) {
+      const index = this.products.findIndex((item) => item.id === id);
+      this.products[index] = {
+        ...product,
+        ...payload,
+      };
+      return this.products[index];
+    }
+    return null;
+  }
+
+  deleteProduct(id: number): void {
+    this.products = this.products.filter((product) => product.id!== id);
+  }
+
+
 }
