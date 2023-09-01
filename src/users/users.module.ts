@@ -3,11 +3,12 @@ import { CustomerController } from './controllers/customers.controller';
 import { UsersController } from './controllers/users.controller';
 import { CustomersService } from './services/customers.service';
 import { UsersService } from './services/users.service';
-import { BrandsController } from 'src/products/controllers/brands.controller';
-import { BrandsService } from 'src/products/services/brands.service';
+import { ProductsModule } from 'src/products/products.module';
+
 
 @Module({
-  controllers: [CustomerController, UsersController, BrandsController],
-  providers: [CustomersService, UsersService, BrandsService]
+  imports: [ProductsModule],
+  controllers: [CustomerController, UsersController],
+  providers: [CustomersService, UsersService]
 })
 export class UsersModule {}
