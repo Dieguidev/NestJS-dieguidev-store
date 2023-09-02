@@ -11,6 +11,7 @@ async function bootstrap() {
     //este comando envia un error si en el request hay campoos extra
     forbidNonWhitelisted: true,
   }))
+
 //codigo para swagger
   const config = new DocumentBuilder()
     .setTitle('Dieguidev-Store')
@@ -20,6 +21,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
+
+  //configurando cors
+  app.enableCors();
 
   await app.listen(3000);
 }
