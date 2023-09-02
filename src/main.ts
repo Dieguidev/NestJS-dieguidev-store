@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -10,6 +11,16 @@ async function bootstrap() {
     //este comando envia un error si en el request hay campoos extra
     forbidNonWhitelisted: true,
   }))
+//codigo para swagger
+  const config = new DocumentBuilder()
+    .setTitle('Dieguidev-Store')
+    .setDescription('The market API description')
+    .setVersion('1.0')
+    .addTag('cats')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+
   await app.listen(3000);
 }
 bootstrap();
