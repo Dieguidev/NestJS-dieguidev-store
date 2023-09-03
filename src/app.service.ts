@@ -10,7 +10,7 @@ export class AppService {
   constructor(
     // @Inject('API_KEY') private apiKey: string,
     @Inject('TASKS') private tasks: any[],
-    @Inject('POSTGRES') private clientPg: Client,
+    @Inject('MYSQL') private clientPg: Client,
     @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
 

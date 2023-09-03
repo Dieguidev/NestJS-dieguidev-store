@@ -39,31 +39,25 @@ export class ProductsController {
   @Get(':productId')
   @HttpCode(HttpStatus.ACCEPTED)
   getProduct(@Param('productId', ParseIntPipe) productId: number) {
-    // response.status(200).send({
-    //   message: `product ${productId}`,
-    // });
-    // return {
-    //   message: `product ${productId} `
-    // };
     return this.productsService.getProduct(productId);
   }
 
-  // @Post()
-  // create(@Body() payload: CreateProductDto) {
-  //   // return {
-  //   //   message: 'accion de crear',
-  //   //   payload
-  //   // };
-  //   return this.productsService.addProduct(payload);
-  // }
+  @Post()
+  create(@Body() payload: CreateProductDto) {
+    // return {
+    //   message: 'accion de crear',
+    //   payload
+    // };
+    return this.productsService.addProduct(payload);
+  }
 
-  // @Put(':id')
-  // update(@Param('id') id: string, @Body() payload: UpdateProductDto) {
-  //   return this.productsService.updateProduct(+id, payload);
-  // }
+  @Put(':id')
+  update(@Param('id', ParseIntPipe) id: number, @Body() payload: UpdateProductDto) {
+    return this.productsService.updateProduct(id, payload);
+  }
 
-  // @Delete(':id')
-  // delete(@Param('id') id: number) {
-  //   return this.productsService.deleteProduct(+id);
-  // }
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.productsService.deleteProduct(id);
+  }
 }

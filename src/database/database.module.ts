@@ -36,7 +36,7 @@ import { Client } from 'pg';
   providers: [
     //este provider realiza toda la conexion a postgres injectando por medio de useFactory
     {
-      provide: 'POSTGRES',
+      provide: 'MYSQL',
       useFactory: (ConfigService: ConfigType<typeof config>) => {
         const { user, host, dbName, password, port } = ConfigService.postgres
         const client = new Client({
@@ -52,6 +52,6 @@ import { Client } from 'pg';
       inject: [config.KEY]
     },
   ],
-  exports: ['POSTGRES', TypeOrmModule],
+  exports: ['MYSQL', TypeOrmModule],
 })
 export class DatabaseModule { }

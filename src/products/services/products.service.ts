@@ -32,40 +32,22 @@ export class ProductsService {
     return product;
   }
 
-  // addProduct(payload: CreateProductDto) {
-  //   console.log(payload);
+  addProduct(data: CreateProductDto) {
+    const newProduct = this.productRepository.create(data);
+    return this.productRepository.save(newProduct);
+  }
 
-  //   this.counterId = this.counterId + 1;
-  //   const newProduct = {
-  //     id: this.counterId,
-  //     ...payload,
-  //   };
-  //   this.products.push(newProduct);
-  //   return newProduct;
-  // }
+  async updateProduct(id: number, changes: UpdateProductDto) {
+    const product =await this.productRepository.findOne({where:{id}});
+    //merge se encarga de sobreescribir los datos
+    //pero no de guardarlos a la base de datos
+    this.productRepository.merge(product, changes);
+    return this.productRepository.save(product)
+  }
 
-  // updateProduct(id: number, payload: UpdateProductDto) {
-  //   const product = this.getProduct(id);
-  //   console.log(product);
 
-  //   if (product) {
-  //     const index = this.products.findIndex((item) => item.id === id);
-  //     this.products[index] = {
-  //       ...product,
-  //       ...payload,
-  //     };
-  //     return this.products[index];
-  //   }
-  //   return null;
-  // }
-
-  // deleteProduct(id: number) {
-  //   const index = this.products.findIndex((item) => item.id === id);
-  //   if (index === -1) {
-  //     throw new NotFoundException(`Product with id ${id} not found`);
-  //   }
-  //   this.products.splice(index, 1);
-  //   return true;
-  // }
+  deleteProduct(id: number) {
+    return this.productRepository.delete(id);
+  }
 
 }
