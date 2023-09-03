@@ -1,16 +1,36 @@
 import { Global, Module } from '@nestjs/common';
+import config from 'src/config';
+import { ConfigService, ConfigType } from '@nestjs/config';
+//conexion a base de datos
+import { Client } from 'pg';
 
-const API_KEY='123456789';
-const API_KEY_PROD='PROD_123456789';
+
+// client.query('SELECT * FROM categorias', (err,res) => {
+//   console.error(err);
+//   console.log(res.rows);
+// });
+
 
 @Global()
 @Module({
   providers:[
     {
-      provide: 'API_KEY',
-      useValue: process.env.NODE_ENV === 'prod'? API_KEY_PROD : API_KEY,
+      provide: 'POSTGRES',
+      useFactory: (ConfigService: ConfigType<typeof config>) => {
+        const {user, host, dbName, password,port} = ConfigService.postgres
+        const client = new Client({
+          user,
+          host,
+          database: dbName,
+          password,
+          port
+        });
+        client.connect();
+        return client;
+      },
+      inject: [config.KEY]
     },
   ],
-  exports: ['API_KEY'],
+  exports: ['POSTGRES'],
 })
 export class DatabaseModule {}

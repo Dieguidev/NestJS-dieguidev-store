@@ -13,6 +13,21 @@ import { enviroments } from './enviroments';
 import config from './config';
 
 
+//conexion a base de datos
+// import { Client } from 'pg';
+// const client = new Client({
+//   user: 'postgres',
+//   host: 'localhost',
+//   database: 'dieguidev-market',
+//   password: '021087Mikeyla',
+//   port: 5433
+// });
+// client.connect();
+// client.query('SELECT * FROM categorias', (err,res) => {
+//   console.error(err);
+//   console.log(res.rows);
+// });
+
 
 @Module({
   imports: [

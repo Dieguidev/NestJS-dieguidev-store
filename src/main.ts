@@ -17,7 +17,7 @@ async function bootstrap() {
     .setTitle('Dieguidev-Store')
     .setDescription('The market API description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('API')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
