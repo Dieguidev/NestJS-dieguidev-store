@@ -27,6 +27,8 @@ import { Client } from 'pg';
           username: user,
           password,
           database: dbName,
+          synchronize: true,
+          autoLoadEntities: true,
         };
       },
     }),
